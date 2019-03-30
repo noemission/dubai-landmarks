@@ -1,0 +1,25 @@
+<div class="container">
+    <div ng-if="ctrl.landmark" class="row p-3">
+
+        <div class="d-flex d-sm-block col-12  justify-content-center align-items-start"
+            ng-class="{'col-sm-3' : !ctrl.is16_9}">
+            <img 
+                ng-src="{{ctrl.landmark.photo.url || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'}}"
+                class="img-fluid mb-3 rounded" alt="">
+        </div>
+        <!-- <img width="250"
+            ng-src="{{ctrl.landmark.photo.url || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'}}"
+            class="rounded align-self-start mr-3" alt=""> -->
+        <div class="media-body col">
+            <h3 class="mt-0 mb-1">{{ctrl.landmark.title}}</h3>
+            <h5>Short info</h5>
+            <p> {{ctrl.landmark.short_info}} </p>
+            <h5>Description</h5>
+            <p> {{ctrl.landmark.description}} </p>
+        </div>
+    </div>
+    <div class="text-center p-5" ng-if="ctrl.error">
+        <h3>Oops! {{ctrl.error}}</h3>
+        <a href="/">Back to home</a>
+    </div>
+</div>

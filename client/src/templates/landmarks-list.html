@@ -1,0 +1,21 @@
+<div class="container">
+    <ul class="list-unstyled">
+        <li ng-repeat="landmark in landmarksList.landmarks" class="row p-3">
+            <div class="d-flex d-sm-block col-12 col-sm-3 justify-content-center align-items-start">
+                <img width="250"
+                    ng-src="{{landmark.photo_thumb.url || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'}}"
+                    class="img-thumbnail mb-3" alt="">
+            </div>
+            <div class="media-body col">
+
+                <h5 class="mt-0 mb-1">
+                    <a ng-href="{{landmark.objectId}}">
+                        {{landmark.title}}
+                    </a>
+                </h5>
+
+                <p> {{landmark.short_info}} </p>
+            </div>
+        </li>
+    </ul>
+</div>

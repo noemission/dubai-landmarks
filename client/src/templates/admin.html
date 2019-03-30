@@ -1,0 +1,48 @@
+<div class="container">
+    <h3>Admin panel!</h3>
+
+    <ul class="list-unstyled">
+        <li ng-repeat="landmark in ctrl.landmarks" class="media p-3 flex-wrap">
+            <form class="media-body row" ng-submit="ctrl.save(landmark)">
+                <div class="col-12 col-3-sm">
+                    <img width="250"
+                        ng-src="{{landmark.photo.url || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'}}"
+                        class="img-thumbnail mr-3" alt="">
+                    <label for="file-upload-{{landmark.objectId}}" class="btn btn-primary">
+                            Change photo
+                    </label>
+                    <input style="display: none;" 
+                    id="file-upload-{{landmark.objectId}}" 
+                    type="file" 
+                    accept=".jpg, .jpeg, .png" 
+                    change="ctrl.onImage"
+                    select-img-files = 'landmark'/>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Title</label>
+                        <input type="text" class="form-control" ng-model="landmark.title">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Short info</label>
+                        <textarea style="min-height:100px;" type="text" class="form-control"
+                            ng-model="landmark.short_info">
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Description</label>
+                        <textarea style="min-height:100px;" type="text" class="form-control"
+                            ng-model="landmark.description">
+                        </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <div class="alert alert-success" ng-if="ctrl.alerts[landmark.objectId]"
+                        ng-class="{'alert-danger': !ctrl.alerts[landmark.objectId].success}" role="alert">
+                        {{ctrl.alerts[landmark.objectId].message}}
+                    </div>
+                </div>
+            </form>
+            <hr ng-if="!$last" class="mt-4" style="flex-basis: 100%;">
+        </li>
+    </ul>
+</div>
