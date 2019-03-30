@@ -8,7 +8,9 @@ angular.module('app')
         var landmarks;
 
         var alerts = {};
+        var loading = {};
         ctrl.alerts = alerts;
+        ctrl.loading = loading;
 
         $q(function (resolve, reject) {
             new Parse.Query(Landmark).find()
@@ -36,6 +38,7 @@ angular.module('app')
             toUpdate.set('photo', parseFile)
 
             $q(function (resolve, reject) {
+                loading[landmark.objectId] = true;
                 toUpdate.save()
                     .then(resolve)
                     .catch(reject)
@@ -43,8 +46,12 @@ angular.module('app')
                 .then((data) => {
                     landmark.photo = data.get('photo').toJSON()
                     showPopup(true, 'Saved successfully', landmark.objectId)
+                    loading[landmark.objectId] = false;
                 })
-                .catch(err => showPopup(false, err.message, landmark.objectId))
+                .catch(err => {
+                    showPopup(false, err.message, landmark.objectId)
+                    loading[landmark.objectId] = false;
+                })
         }
 
         ctrl.save = function (landmark) {

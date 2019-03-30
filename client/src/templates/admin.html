@@ -8,15 +8,19 @@
                     <img width="250"
                         ng-src="{{landmark.photo.url || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'}}"
                         class="img-thumbnail mr-3" alt="">
-                    <label for="file-upload-{{landmark.objectId}}" class="btn btn-primary">
+                    <label ng-hide="ctrl.loading[landmark.objectId]" for="file-upload-{{landmark.objectId}}" class="btn btn-primary">
                             Change photo
                     </label>
+                    <button ng-show="ctrl.loading[landmark.objectId]" disabled class="btn btn-primary">
+                            Loading...
+                    </button>
                     <input style="display: none;" 
                     id="file-upload-{{landmark.objectId}}" 
                     type="file" 
                     accept=".jpg, .jpeg, .png" 
                     change="ctrl.onImage"
                     select-img-files = 'landmark'/>
+                    
                 </div>
                 <div class="col">
                     <div class="form-group">
