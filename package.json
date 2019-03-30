@@ -2,7 +2,7 @@
   "name": "app",
   "description": "parse-server for app",
   "scripts": {
-    "start": "parse-server config.json"
+    "start": "node server.js"
   },
   "dependencies": {
     "angular": "^1.7.8",
